@@ -25,29 +25,33 @@ console.log ("Voy a pasar a preguntarle sobre las plantas que quiero cuáles le 
 
 
 let planta1 = prompt("Le gustaría comprar la planta 'Árbol lira'? La macetita está $200")
-console.log
+console.log ("Le gustaría comprar la planta 'Árbol lira'? La macetita está $200")
 
-if (planta1 == "si") {
+if (planta1 === "si") {
     let planta1Q = Number(prompt("Cuántas le gustaría comprar? Ten en cuenta que están $200 c/u"))
     alert("Has agregado " + planta1Q + " Árbol lira al carrito." )
     console.log ("Me gustaría comprar " + planta1Q + " Arbol lira.")
 } else {
     let planta1Q = 0
+    console.log ("No, no me gustaría comprar Arbol lira")
 }
 
 let planta2 = prompt("Le gustaría comprar la planta 'Crassula'? La macetita está $150") 
+console.log("Le gustaría comprar la planta 'Crassula'? La macetita está $150")
 
-if (planta2 == "si") {
+if (planta2 === "si") {
     let planta2Q = Number(prompt("Cuántas le gustaría comprar? Ten en cuenta que están $150 c/u"))
     alert("Has agregado " + planta2Q + " Crassula al carrito.")
     console.log ("Me gustaría comprar " + planta2Q + " Crassula.")
 } else {
     let planta2Q = 0
+    console.log ("No, no me gustaría comprar Crassula")
 }
 total ()
 function total(){
     if (planta1Q !== 0 ){
         let planta1P = ( planta1Q * 200) * 1.3 ;
+        console.log()
     } else {
         let planta1P = 0
     }
