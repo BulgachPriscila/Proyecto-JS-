@@ -1,11 +1,6 @@
 console.log ("Acá inicia el programa.")
 alert ("Bienvenido al Jardín, donde vamos a poder comprar unas plantas!")
 
-let planta1Q = ""
-let planta2Q = ""
-
-
-usuario ()
 
 function usuario() {
     
@@ -19,6 +14,12 @@ function usuario() {
     console.log ("Edad: " + edad + " años.")
 }
 
+
+
+usuario ()
+
+
+
 alert ("Voy a pasar a preguntarle sobre las plantas que quiero cuáles le gustaría, recuerde que vendemos con un IVA del 1,3% que NO está contemplado en los precios")
 console.log ("Voy a pasar a preguntarle sobre las plantas que quiero cuáles le gustaría, recuerde que vendemos con un IVA del 1,3% que NO está contemplado en los precios")
 
@@ -28,10 +29,13 @@ let planta1 = prompt("Le gustaría comprar la planta 'Árbol lira'? La macetita 
 console.log ("Le gustaría comprar la planta 'Árbol lira'? La macetita está $200")
 
 if (planta1 === "si") {
+    
     let planta1Q = Number(prompt("Cuántas le gustaría comprar? Ten en cuenta que están $200 c/u"))
     alert("Has agregado " + planta1Q + " Árbol lira al carrito." )
     console.log ("Me gustaría comprar " + planta1Q + " Arbol lira.")
-} else {
+    
+    } else {
+    let planta1T = 0
     let planta1Q = 0
     console.log ("No, no me gustaría comprar Arbol lira")
 }
@@ -43,28 +47,40 @@ if (planta2 === "si") {
     let planta2Q = Number(prompt("Cuántas le gustaría comprar? Ten en cuenta que están $150 c/u"))
     alert("Has agregado " + planta2Q + " Crassula al carrito.")
     console.log ("Me gustaría comprar " + planta2Q + " Crassula.")
+    
 } else {
+    let planta2T = 0
     let planta2Q = 0
     console.log ("No, no me gustaría comprar Crassula")
 }
+calc1 ()
+calc2 ()
 total ()
-function total(){
-    if (planta1Q !== 0 ){
-        let planta1P = ( planta1Q * 200) * 1.3 ;
-        console.log()
+
+function calc1 () {
+    if (planta1Q !== 0) {
+        let planta1Total = Number(planta1Q * 200)
+        console.log ("El total sería = $" + planta1Total)
     } else {
-        let planta1P = 0
+        let planta1Total = 0
+        console.log ("No hay Arbol lira en el carrito")
     }
-    if (planta2Q !== 0 ){
-        let planta2P = ( planta2Q * 150) * 1.3 ;
+}
+function calc2 () {
+    if (planta2Q !== 0) {
+        let planta2Total = Number(planta2Q * 150) 
+        console.log ("El total sería = $" + planta2Total)
     } else {
-        let planta2P = 0
+        planta2Total = 0
+        console.log ("No hay Crassula en el carrito")
     }
+}
 
-    let total = planta1P + planta2P ;
+    function total () {
+    let total = planta1Total + planta2Total ;
+    console.log ("El total SIN IVA sería = $" + total)    
 
+    let totalI = Number(total) * 1.3 ;
+    console.log ("El total CON IVA sería = $" + totalI)
 
-    console.log ("El precio final de " + planta1Q + " Arbol lira es =" + planta1P)
-    console.log ("El precio final de " + planta2Q + " Crassula es = " + planta2P)
-    console.log ("El total sería= $" + total)
 }
