@@ -1,11 +1,6 @@
 console.log ("Acá inicia el programa.")
 alert ("Bienvenido al Jardín, donde vamos a poder comprar unas plantas!")
 
-let planta1Q = ""
-let planta2Q = ""
-let planta1Total = ""
-let planta2Total = ""
-
 function usuario() {
     
     let nombre = prompt("Ingrese su nombre: ")
@@ -19,70 +14,88 @@ function usuario() {
 }
 
 
-
 usuario ()
 
-
-
-alert ("Voy a pasar a preguntarle sobre las plantas que quiero cuáles le gustaría, recuerde que vendemos con un IVA del 1,3% que NO está contemplado en los precios")
-console.log ("Voy a pasar a preguntarle sobre las plantas que quiero cuáles le gustaría, recuerde que vendemos con un IVA del 1,3% que NO está contemplado en los precios")
-
-
-
-var planta1 = prompt("Le gustaría comprar la planta 'Árbol lira'? La macetita está $200")
-console.log ("Le gustaría comprar la planta 'Árbol lira'? La macetita está $200")
-
-if (planta1 === "si") {
-    
-    planta1Q = Number(prompt("Cuántas le gustaría comprar? Ten en cuenta que están $200 c/u"))
-    alert("Has agregado " + planta1Q + " Árbol lira al carrito." )
-    console.log ("Me gustaría comprar " + planta1Q + " Arbol lira.")
-    
-    } else {
-    planta1Q = 0
-    console.log ("No, no me gustaría comprar Arbol lira")
-}
-
-var planta2 = prompt("Le gustaría comprar la planta 'Crassula'? La macetita está $150") 
-console.log("Le gustaría comprar la planta 'Crassula'? La macetita está $150")
-
-if (planta2 === "si") {
-    planta2Q = Number(prompt("Cuántas le gustaría comprar? Ten en cuenta que están $150 c/u"))
-    alert("Has agregado " + planta2Q + " Crassula al carrito.")
-    console.log ("Me gustaría comprar " + planta2Q + " Crassula.")
-    
-} else {
-    planta2Q = 0
-    console.log ("No, no me gustaría comprar Crassula")
-}
-calc1 ()
-calc2 ()
-total ()
-
-function calc1 () {
-    if (planta1Q !== 0) {
-        planta1Total = Number(planta1Q * 200)
-        console.log ("El total sería = $" + planta1Total)
-    } else {
-        planta1Total = 0
-        console.log ("No hay Arbol lira en el carrito")
-    }
-}
-function calc2 () {
-    if (planta2Q != 0) {
-        planta2Total = Number(planta2Q * 150) 
-        console.log ("El total sería = $" + planta2Total)
-    } else {
-        planta2Total = 0
-        console.log ("No hay Crassula en el carrito")
+class Planta {
+    constructor (id, nombre, altura, tipo, precio) {
+        this.id = id
+        this.nombre = nombre
+        this.altura = altura
+        this.tipo = tipo 
+        this.precio = precio
     }
 }
 
 function total () {
-    let totalS = planta1Total + planta2Total ;
+    let totalS = planta1T + planta2T + planta3T + planta4T ;
     console.log ("El total SIN IVA sería = $" + totalS)    
 
     let totalI = Number(totalS) * 1.3 ;
     console.log ("El total CON IVA sería = $" + totalI)
-
 }
+let planta1T = Number()
+let planta2T = Number()
+let planta3T = Number()
+let planta4T = Number()
+
+
+const plantas = [
+    new Planta (1 , "lyrata" , 20 , "suculenta" , 200),
+    new Planta (2 , "crassula" , 15 , "suculenta" , 150),
+    new Planta (3 , "cactus1" , 25 , "cactus" , 200),
+    new Planta (4 , "cactus2" , 25 , "cactus" , 180),
+]
+
+console.log("Te gustaría ver nuestro stock de plantas?")
+let stock = prompt("Te gustaría ver nuestro stock de plantas? si/no")
+while (stock == "si") {    
+    for (let i = 0 ; i <= plantas.length ; i++) {
+        console.log (plantas[i])
+    }
+    break
+}
+
+
+let planta1 = prompt ("Le gustaría comprar Lyrata?")
+console.log ("Le gustaría comprar Lyrata? = " + planta1)
+
+if (planta1 == "si") {
+    let planta1Q = Number (prompt("Cuantas Lyrata le gustaría comprar? El precio es $200"))
+    console.log ("Me gustaría comprar " +  planta1Q + " Lyrata")
+    planta1T = planta1Q * 200
+    console.log ("El total de Lyrata sería = $" + planta1T)
+}
+
+let planta2 = prompt ("Le gustaría comprar Crassula?")
+console.log ("Le gustaría comprar Lyrata? = " + planta2)
+
+if (planta2 == "si") {
+    let planta2Q = Number (prompt("Cuantas Crassula le gustaría comprar? El precio es $150"))
+    console.log ("Me gustaría comprar " +  planta2Q + " Crassula")
+    planta2T = planta2Q * 150
+    console.log ("El total de Crassula sería = $" + planta2T)
+}
+
+
+let planta3 = prompt ("Le gustaría comprar Cactus1?")
+console.log ("Le gustaría comprar Lyrata? = " + planta3)
+
+if (planta3 == "si") {
+    let planta3Q = Number (prompt("Cuantos cactus1 le gustaría comprar? El precio es $200"))
+    console.log ("Me gustaría comprar " + planta3Q + " cactus1")
+    planta3T = planta3Q * 200
+    console.log ("El total de cactus1 sería = $" + planta3T)
+}
+
+
+let planta4 = prompt ("Le gustaría comprar Cactus2?")
+console.log ("Le gustaría comprar Lyrata? = " + planta4)
+
+if (planta4 == "si") {
+    let planta4Q = Number (prompt("Cuantas cactus2 le gustaría comprar? El precio es $180"))
+    console.log ("Me gustaría comprar " +  planta4Q + " cactus2")
+    planta4T = planta4Q * 180
+    console.log ("El total de cactus2 sería = $" + planta4T)
+}
+
+total ()
