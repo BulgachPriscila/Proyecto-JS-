@@ -56,7 +56,9 @@ function total () {
 
     let totalI = Number(totalS) * 1.3 ;
     console.log ("El total CON IVA sería = $" + totalI)
+    alert ("El total sería = $" + totalI)
 }
+
 let planta1T = Number()
 let planta2T = Number()
 let planta3T = Number()
@@ -90,7 +92,7 @@ console.log ("Le gustaría comprar Lyrata? = " + planta2)
 
 if (planta2 == "si") {
     crassula ()
-}
+} 
 
 
 let planta3 = prompt ("Le gustaría comprar Cactus1?")
@@ -106,6 +108,7 @@ console.log ("Le gustaría comprar Lyrata? = " + planta4)
 
 if (planta4 == "si") {
     cactus2()
-}
+} 
+
 
 total ()
