@@ -116,7 +116,7 @@ function agregarProducto2 () {
     carrito.forEach ((plantas, id) => {
                 
         html += `
-        <div class="card col-md bgtiles planta">
+        <div class="card col-md bgtiles">
             <img src="./assets/img/maceta-suculenta.png" class="card-img-top" alt="Planta">
             <div class="card-body">
                 <h5 class="card-title">${plantas.nombre}</h5>
@@ -128,18 +128,29 @@ function agregarProducto2 () {
         `
     })
     carritoCard.innerHTML = html 
+    localStorage.setItem("carritoGuardado", carritoJSON)
 }
 function eliminarProducto (id) {
+
     carritoTS = JSON.parse (localStorage.getItem("carritoGuardado"));
-/*     remove = document.getElementsByClassName ("planta")*/
-    console.log (carritoTS)
-    
+
+    carritoCard = carritoTS.find (plantas => plantas.id ==id);
+
+    remove = carritoTS.find (plantas => plantas.id ==id);
+
+    if (remove) {
+        carrito.splice (id, 1);
+    }
+
+    agregarProducto2()
+    localStorage.setItem("carritoGuardado", carritoJSON)
+
+    console.log (carrito)
 
 }
-
-function actualizarCarrito () { 
-
-}
+/* 
+function actualizarCarrito () {
+} */
 
 function vaciarCarrito() {
     plantas[0].cantidad = 0
