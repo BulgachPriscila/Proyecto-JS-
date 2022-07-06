@@ -14,6 +14,7 @@ let planta4 = ""
 let carritoGuardado = ""
 let carritoJSON = ""
 let carritoTS = JSON.parse (localStorage.getItem("carritoGuardado"))
+let agregadoAlert = ""
 
 
 const plantas = [
@@ -24,7 +25,7 @@ const plantas = [
         "tipo" : "Suculenta",
         "precio" : 200,
         "img" : "./assets/img/maceta-suculenta.png",
-        "cantidad" : 0
+        "cantidad" : 1
     },
     {
         "id" : 2,
@@ -33,7 +34,7 @@ const plantas = [
         "tipo" : "Suculenta",
         "precio" : 150,
         "img" : "./assets/img/maceta-suculenta.png",
-        "cantidad" : 0
+        "cantidad" : 1
     },
     {
         "id" : 3,
@@ -42,7 +43,7 @@ const plantas = [
         "tipo" : "Cactus",
         "precio" : 200,
         "img" : "./assets/img/maceta-suculenta.png",
-        "cantidad" : 0
+        "cantidad" : 1
     },
     {
         "id" : 4,
@@ -51,7 +52,7 @@ const plantas = [
         "tipo" : "Cactus",
         "precio" : 180,
         "img" : "./assets/img/maceta-suculenta.png",
-        "cantidad" : 0
+        "cantidad" : 1
     }
 ]
 
@@ -68,6 +69,8 @@ class Planta {
     }
 }
 
+
+
 function abrirShop () {
     
     
@@ -81,11 +84,12 @@ function abrirShop () {
                             <div class="card-body">
                                 <h5 class="card-title">${plantas.nombre}</h5>
                                 <p class="card-text"><b> $ ${plantas.precio}</b></p>
-                                <button type="submit" class="btn btn-primary" onClick="agregarProducto(${plantas.id})">Agregar</button>
+                                <button type="submit" class="btn btn-primary" onClick="agregarProducto(${plantas.id})" id="toast">Agregar</button>
                             </div>
                         </div>
                         `;
                         contenedor.innerHTML += producto
+                        
     })
 }
 abrirShop ()
@@ -104,6 +108,13 @@ function agregarProducto (id) {
     }
     carritoJSON = JSON.stringify(carrito)
     localStorage.setItem("carritoGuardado", carritoJSON)
+
+    Toastify ({
+        text: `Has agregado el producto al carrito`,
+        duration: 3000,
+        gravity: `top`,
+    }).showToast()
+
     agregarProducto2 ()
 
 }
@@ -113,7 +124,7 @@ function agregarProducto2 () {
     let carritoCard = document.getElementById ("carrito")
     html = ""
     
-    carrito.forEach ((plantas, id) => {
+    carrito.forEach ((plantas) => {
                 
         html += `
         <div class="card col-md bgtiles">
@@ -134,23 +145,24 @@ function eliminarProducto (id) {
 
     carritoTS = JSON.parse (localStorage.getItem("carritoGuardado"));
 
-    carritoCard = carritoTS.find (plantas => plantas.id ==id);
+    carritoCard = plantas.find (plantas => plantas.id ==id);
 
-    remove = carritoTS.find (plantas => plantas.id ==id);
+    remove = carrito.find (plantas => plantas.id ==id);
 
-    if (remove) {
-        carrito.splice (id, 1);
+    if (remove.cantidad !== 0) {
+        carrito.splice (id, 1)
     }
 
     agregarProducto2()
     localStorage.setItem("carritoGuardado", carritoJSON)
 
     console.log (carrito)
+    console.log (carritoTS)
 
 }
-/* 
+
 function actualizarCarrito () {
-} */
+} 
 
 function vaciarCarrito() {
     plantas[0].cantidad = 0
