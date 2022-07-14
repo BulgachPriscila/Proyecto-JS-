@@ -35,3 +35,8 @@ nav {
 .bgtiles {
     background-image: url(./../assets/img/beige-tiles.png);
 }
+
+.toastedClass{
+    background-image: url(./../assets/img/beige-tiles.png);
+    color: black;
+}

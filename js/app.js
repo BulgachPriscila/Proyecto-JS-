@@ -13,8 +13,9 @@ let planta3 = ""
 let planta4 = ""
 let carritoGuardado = ""
 let carritoJSON = ""
-let carritoTS = JSON.parse (localStorage.getItem("carritoGuardado"))
 let agregadoAlert = ""
+let carritoTS = ""
+
 
 
 const plantas = [
@@ -91,28 +92,32 @@ function abrirShop () {
                         contenedor.innerHTML += producto
                         
     })
+    carritoJSON = JSON.stringify(carrito)
+    localStorage.setItem("carritoGuardado", carritoJSON)
 }
 abrirShop ()
-vaciarCarrito ()
+agregarProducto2 ()
 
 function agregarProducto (id) {
     producto = plantas.find (plantas => plantas.id ==id);
 
-    plantaCarrito = carrito.find (plantas => plantas.id ==id);
+    plantaCarrito = carritoTS.find (plantas => plantas.id ==id);
     
     if (plantaCarrito) {
         plantaCarrito.cantidad ++;
     } else {
         producto.cantidad = 1;
-        carrito.push (producto);
+        carritoTS.push (producto);
     }
-    carritoJSON = JSON.stringify(carrito)
     localStorage.setItem("carritoGuardado", carritoJSON)
+    console.log (carritoTS)
+
 
     Toastify ({
         text: `Has agregado el producto al carrito`,
         duration: 3000,
         gravity: `top`,
+        className: "toastedClass",
     }).showToast()
 
     agregarProducto2 ()
@@ -121,10 +126,12 @@ function agregarProducto (id) {
 
 
 function agregarProducto2 () {
+    carritoTS = JSON.parse(localStorage.getItem("carritoGuardado"));
+
     let carritoCard = document.getElementById ("carrito")
     html = ""
     
-    carrito.forEach ((plantas) => {
+    carritoTS.forEach ((plantas) => {
                 
         html += `
         <div class="card col-md bgtiles">
@@ -147,14 +154,21 @@ function eliminarProducto (id) {
 
     carritoCard = plantas.find (plantas => plantas.id ==id);
 
-    remove = carrito.find (plantas => plantas.id ==id);
+    remove = carritoTS.find (plantas => plantas.id ==id);
 
     if (remove.cantidad !== 0) {
-        carrito.splice (id, 1)
+        carritoTS.splice (id, 1)
     }
+    
+    Toastify ({
+        text: `Has eliminado el producto del carrito`,
+        duration: 3000,
+        gravity: `top`,
+        className: "toastedClass",
+    }).showToast()
 
-    agregarProducto2()
     localStorage.setItem("carritoGuardado", carritoJSON)
+    agregarProducto2()
 
     console.log (carrito)
     console.log (carritoTS)
@@ -162,6 +176,7 @@ function eliminarProducto (id) {
 }
 
 function actualizarCarrito () {
+    agregarProducto2 ()
 } 
 
 function vaciarCarrito() {
